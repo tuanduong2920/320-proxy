@@ -14,6 +14,14 @@ console.log("Using limit: ", myLimit);
 app.use(bodyParser.json({ limit: myLimit }));
 
 app.all("/yt/audio", async (req, res) => {
+
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, PATCH, POST, DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    req.header("access-control-request-headers")
+  );
+
   const id = req.query.id;
   const url = `https://www.youtube.com/watch?v=${id}`;
 
